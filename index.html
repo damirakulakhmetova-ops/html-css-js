@@ -2,20 +2,94 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Моя страница</title>
     <style>
+      /* Цвета храним в переменных, чтобы легко менять тему */
       body {
+        --bg: #1e2a3a;
+        --card: #2b3a4f;
+        --text: white;
+        --accent: #ffb86b;
+        --link: #8be9fd;
         font-family: sans-serif;
-        background: #1e2a3a;
+        background: var(--bg);
+        color: var(--text);
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 24px 16px;
+        transition: background 0.3s, color 0.3s;
+      }
+      /* Светлая тема: включается классом light на body */
+      body.light {
+        --bg: #f5f5f5;
+        --card: white;
+        --text: #222;
+        --accent: royalblue;
+        --link: #0066cc;
       }
       h1 {
-        color: #ffb86b;
-      }
-      p {
-        color: white;
+        color: var(--accent);
       }
       a {
-        color: #8be9fd;
+        color: var(--link);
+      }
+      .card {
+        background: var(--card);
+        border-radius: 12px;
+        padding: 16px;
+        margin: 16px 0;
+      }
+      .card h2 {
+        margin-top: 0;
+        font-size: 18px;
+      }
+      input {
+        padding: 8px;
+        border-radius: 6px;
+        border: 1px solid #888;
+        font-size: 15px;
+      }
+      button {
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        background: var(--accent);
+        color: #1e2a3a;
+        font-size: 15px;
+        cursor: pointer;
+      }
+      button:hover {
+        opacity: 0.85;
+      }
+      .tag {
+        display: inline-block;
+        padding: 4px 10px;
+        margin: 4px;
+        border-radius: 999px;
+        border: 1px solid var(--accent);
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 0;
+      }
+      li span {
+        flex: 1;
+      }
+      /* Выполненная задача — зачёркнута */
+      li.done span {
+        text-decoration: line-through;
+        opacity: 0.5;
+      }
+      .delete {
+        background: transparent;
+        color: var(--text);
       }
     </style>
   </head>
@@ -23,5 +97,38 @@
     <h1>Привет!</h1>
     <p>Моя первая страница</p>
     <a href="https://github.com">GitHub</a>
+
+    <!-- 1. Смена темы -->
+    <div class="card">
+      <h2>🌗 Тема</h2>
+      <button id="theme-btn">Сменить тему</button>
+    </div>
+
+    <!-- 2. Приветствие по имени -->
+    <div class="card">
+      <h2>👋 Как тебя зовут?</h2>
+      <input id="name-input" placeholder="Введите имя" />
+      <p id="greeting"></p>
+    </div>
+
+    <!-- 3. Навыки -->
+    <div class="card">
+      <h2>🛠 Мои навыки</h2>
+      <div id="skills"></div>
+      <input id="skill-input" placeholder="Новый навык" />
+      <button id="skill-btn">Добавить</button>
+    </div>
+
+    <!-- 4. Список дел -->
+    <div class="card">
+      <h2>📝 Список дел</h2>
+      <input id="todo-input" placeholder="Что нужно сделать?" />
+      <button id="todo-btn">Добавить</button>
+      <ul id="todo-list"></ul>
+      <p id="todo-counter"></p>
+    </div>
+
+    <!-- Подключаем JavaScript в самом конце, когда страница уже загружена -->
+    <script src="app.js"></script>
   </body>
 </html>
